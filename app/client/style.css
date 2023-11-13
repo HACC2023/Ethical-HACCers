@@ -3,8 +3,10 @@
 
 /* Set up some CSS variables to theme the application. */
 :root {
-  --matr-navbar-bg: #ECECEC;
-  --matr-navbar-bg-rgb: 236, 236, 236;
+  --matr-navbar-bg: #FFFFFF;
+  --matr-navbar-bg-rgb: 255, 255, 255;
+  --theme-blue: #2C5C85;
+  --theme-green: #92B694;
 }
 
 /* Change bootstrap variable values.
@@ -25,4 +27,20 @@ body {
   color: var(--bs-dark);
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+.navy-background {
+  background-color: var(--theme-blue);
+  color: var(--bs-light);
+}
+
+footer, footer a {
+  line-height: 15px;
+  color: var(--bs-dark);
+}
+
+.landing {
+  font-size: 250%;
+  font-weight: lighter;
+  text-outline: black 2px;
 }
