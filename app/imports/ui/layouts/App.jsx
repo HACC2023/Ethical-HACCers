@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -16,6 +15,8 @@ import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
+import ReturnContainer from '../pages/ReturnContainer';
+import Rent from '../pages/Rent';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -35,8 +36,8 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/rent" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
-          <Route path="/return" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+          <Route path="/rent" element={<ProtectedRoute><Rent /></ProtectedRoute>} />
+          <Route path="/return" element={<ProtectedRoute><ReturnContainer /></ProtectedRoute>} />
           <Route path="/history/:_id" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
