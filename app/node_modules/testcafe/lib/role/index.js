@@ -1,0 +1,27 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createAnonymousRole = exports.createRole = void 0;
+const type_assertions_1 = require("../errors/runtime/type-assertions");
+const wrap_test_function_1 = __importDefault(require("../api/wrap-test-function"));
+const test_page_url_1 = require("../api/test-page-url");
+const role_1 = __importDefault(require("./role"));
+function createRole(loginUrl, initFn, options = { preserveUrl: false }) {
+    (0, type_assertions_1.assertType)(type_assertions_1.is.string, 'Role', 'The "loginUrl" argument', loginUrl);
+    (0, type_assertions_1.assertType)(type_assertions_1.is.function, 'Role', 'The "initFn" argument', initFn);
+    (0, type_assertions_1.assertType)(type_assertions_1.is.nonNullObject, 'Role', 'The "options" argument', options);
+    if (options.preserveUrl !== void 0)
+        (0, type_assertions_1.assertType)(type_assertions_1.is.boolean, 'Role', 'The "preserveUrl" option', options.preserveUrl);
+    (0, test_page_url_1.assertRoleUrl)(loginUrl, 'Role');
+    loginUrl = (0, test_page_url_1.getUrl)(loginUrl);
+    initFn = (0, wrap_test_function_1.default)(initFn);
+    return new role_1.default(loginUrl, initFn, options);
+}
+exports.createRole = createRole;
+function createAnonymousRole() {
+    return new role_1.default(null, null);
+}
+exports.createAnonymousRole = createAnonymousRole;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvcm9sZS9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQSx1RUFBbUU7QUFDbkUsbUZBQXlEO0FBQ3pELHdEQUE2RDtBQUM3RCxrREFBMEI7QUFNMUIsU0FBZ0IsVUFBVSxDQUFFLFFBQWdCLEVBQUUsTUFBZ0IsRUFBRSxVQUF1QixFQUFFLFdBQVcsRUFBRSxLQUFLLEVBQUU7SUFDekcsSUFBQSw0QkFBVSxFQUFDLG9CQUFFLENBQUMsTUFBTSxFQUFFLE1BQU0sRUFBRSx5QkFBeUIsRUFBRSxRQUFRLENBQUMsQ0FBQztJQUNuRSxJQUFBLDRCQUFVLEVBQUMsb0JBQUUsQ0FBQyxRQUFRLEVBQUUsTUFBTSxFQUFFLHVCQUF1QixFQUFFLE1BQU0sQ0FBQyxDQUFDO0lBQ2pFLElBQUEsNEJBQVUsRUFBQyxvQkFBRSxDQUFDLGFBQWEsRUFBRSxNQUFNLEVBQUUsd0JBQXdCLEVBQUUsT0FBTyxDQUFDLENBQUM7SUFFeEUsSUFBSSxPQUFPLENBQUMsV0FBVyxLQUFLLEtBQUssQ0FBQztRQUM5QixJQUFBLDRCQUFVLEVBQUMsb0JBQUUsQ0FBQyxPQUFPLEVBQUUsTUFBTSxFQUFFLDBCQUEwQixFQUFFLE9BQU8sQ0FBQyxXQUFXLENBQUMsQ0FBQztJQUVwRixJQUFBLDZCQUFhLEVBQUMsUUFBUSxFQUFFLE1BQU0sQ0FBQyxDQUFDO0lBRWhDLFFBQVEsR0FBRyxJQUFBLHNCQUFNLEVBQUMsUUFBUSxDQUFDLENBQUM7SUFDNUIsTUFBTSxHQUFLLElBQUEsNEJBQWdCLEVBQUMsTUFBTSxDQUFDLENBQUM7SUFFcEMsT0FBTyxJQUFJLGNBQUksQ0FBQyxRQUFRLEVBQUUsTUFBTSxFQUFFLE9BQU8sQ0FBQyxDQUFDO0FBQy9DLENBQUM7QUFkRCxnQ0FjQztBQUVELFNBQWdCLG1CQUFtQjtJQUMvQixPQUFPLElBQUksY0FBSSxDQUFDLElBQUksRUFBRSxJQUFJLENBQUMsQ0FBQztBQUNoQyxDQUFDO0FBRkQsa0RBRUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBhc3NlcnRUeXBlLCBpcyB9IGZyb20gJy4uL2Vycm9ycy9ydW50aW1lL3R5cGUtYXNzZXJ0aW9ucyc7XG5pbXBvcnQgd3JhcFRlc3RGdW5jdGlvbiBmcm9tICcuLi9hcGkvd3JhcC10ZXN0LWZ1bmN0aW9uJztcbmltcG9ydCB7IGdldFVybCwgYXNzZXJ0Um9sZVVybCB9IGZyb20gJy4uL2FwaS90ZXN0LXBhZ2UtdXJsJztcbmltcG9ydCBSb2xlIGZyb20gJy4vcm9sZSc7XG5cbmludGVyZmFjZSBSb2xlT3B0aW9ucyB7XG4gICAgcHJlc2VydmVVcmw/OiBib29sZWFuO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gY3JlYXRlUm9sZSAobG9naW5Vcmw6IHN0cmluZywgaW5pdEZuOiBGdW5jdGlvbiwgb3B0aW9uczogUm9sZU9wdGlvbnMgPSB7IHByZXNlcnZlVXJsOiBmYWxzZSB9KTogUm9sZSB7XG4gICAgYXNzZXJ0VHlwZShpcy5zdHJpbmcsICdSb2xlJywgJ1RoZSBcImxvZ2luVXJsXCIgYXJndW1lbnQnLCBsb2dpblVybCk7XG4gICAgYXNzZXJ0VHlwZShpcy5mdW5jdGlvbiwgJ1JvbGUnLCAnVGhlIFwiaW5pdEZuXCIgYXJndW1lbnQnLCBpbml0Rm4pO1xuICAgIGFzc2VydFR5cGUoaXMubm9uTnVsbE9iamVjdCwgJ1JvbGUnLCAnVGhlIFwib3B0aW9uc1wiIGFyZ3VtZW50Jywgb3B0aW9ucyk7XG5cbiAgICBpZiAob3B0aW9ucy5wcmVzZXJ2ZVVybCAhPT0gdm9pZCAwKVxuICAgICAgICBhc3NlcnRUeXBlKGlzLmJvb2xlYW4sICdSb2xlJywgJ1RoZSBcInByZXNlcnZlVXJsXCIgb3B0aW9uJywgb3B0aW9ucy5wcmVzZXJ2ZVVybCk7XG5cbiAgICBhc3NlcnRSb2xlVXJsKGxvZ2luVXJsLCAnUm9sZScpO1xuXG4gICAgbG9naW5VcmwgPSBnZXRVcmwobG9naW5VcmwpO1xuICAgIGluaXRGbiAgID0gd3JhcFRlc3RGdW5jdGlvbihpbml0Rm4pO1xuXG4gICAgcmV0dXJuIG5ldyBSb2xlKGxvZ2luVXJsLCBpbml0Rm4sIG9wdGlvbnMpO1xufVxuXG5leHBvcnQgZnVuY3Rpb24gY3JlYXRlQW5vbnltb3VzUm9sZSAoKTogUm9sZSB7XG4gICAgcmV0dXJuIG5ldyBSb2xlKG51bGwsIG51bGwpO1xufVxuIl19
