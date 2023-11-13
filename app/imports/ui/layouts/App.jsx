@@ -9,7 +9,6 @@ import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import AddStuff from '../pages/AddStuff';
-import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -28,7 +27,7 @@ const App = () => {
   });
   return (
     <Router>
-      <div className="d-flex flex-column min-vh-100">
+      <div className="d-flex flex-column min-vh-100 navy-background">
         <NavBar />
         <Routes>
           <Route exact path="/" element={<Landing />} />
@@ -36,10 +35,12 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
-          <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
-          <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
-          <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
+          <Route path="/rent" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+          <Route path="/return" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+          <Route path="/history/:_id" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
+          <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+          <Route path="/adminhistory" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
