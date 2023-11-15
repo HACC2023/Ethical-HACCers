@@ -2,20 +2,19 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
 /**
- * The EventsCollection. It encapsulates state and variable values for stuff.
+ * The VendorsCollection. It encapsulates state and variable values for stuff.
  */
-class EventsCollection {
+class VendorsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'EventsCollection';
+    this.name = 'VendorsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
       organization: String,
-      eventLocation: String,
-      quantity: Number,
-      eventDate: Date,
+      organizationLocation: Number,
+      quantity: Date,
       orderDate: Date, // Automatically collected
       returnDate: Date,
       types: {
@@ -38,7 +37,7 @@ class EventsCollection {
 }
 
 /**
- * The singleton instance of the EventsCollection.
- * @type {EventsCollection}
+ * The singleton instance of the VendorsCollection.
+ * @type {VendorsCollection}
  */
-export const Events = new EventsCollection();
+export const Events = new VendorsCollection();
