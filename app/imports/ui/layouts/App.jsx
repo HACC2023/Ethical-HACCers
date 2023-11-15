@@ -16,6 +16,12 @@ import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import NotAuthorized from '../pages/NotAuthorized';
 import LoadingSpinner from '../components/LoadingSpinner';
+import AdminLanding from '../pages/admin/AdminLanding';
+
+const AdminOrRegularLanding = () => {
+  const userIsAdmin = Roles.userIsInRole(Meteor.userId(), 'admin');
+  return userIsAdmin ? <AdminLanding /> : <Landing />;
+};
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -30,7 +36,7 @@ const App = () => {
       <div className="d-flex flex-column min-vh-100 navy-background">
         <NavBar />
         <Routes>
-          <Route exact path="/" element={<Landing />} />
+          <Route exact path="/" element={<AdminOrRegularLanding />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
