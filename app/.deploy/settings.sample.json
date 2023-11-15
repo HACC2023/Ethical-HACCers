@@ -11,6 +11,19 @@
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
 
+  "defaultContainers": [
+    {
+      "containerId": "Default-1",
+      "checkoutDate": "2023-01-01T00:00:00.000Z",
+      "status": "with-vendor"
+    },
+    {
+      "containerId": "Default-2",
+      "checkoutDate": "2023-01-01T00:00:00.000Z",
+      "status": "in-use"
+    }
+  ],
+
   "monti": {
     "appId": "changeme",
     "appSecret": "changeme"

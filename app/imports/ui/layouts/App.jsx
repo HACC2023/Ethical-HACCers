@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
+import RentContainer from '../pages/RentContainer';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
@@ -35,8 +35,8 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/rent" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
-          <Route path="/return" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+          <Route path="/rent" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
+          <Route path="/return" element={<ProtectedRoute><RentContainer /></ProtectedRoute>} />
           <Route path="/history/:_id" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
           <Route path="/faqs" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/about" element={<ProtectedRoute><Landing /></ProtectedRoute>} />

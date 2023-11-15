@@ -1,34 +1,36 @@
+// RentContainer.jsx
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, SelectField, SubmitField, TextField, DateField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
-import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
-import { Stuffs } from '../../api/stuff/Stuff';
+import { Containers } from '../../api/container/Containers';
 
-// Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
-  name: String,
-  quantity: Number,
-  condition: {
+  containerId: String,
+  checkoutDate: {
+    type: Date,
+    defaultValue: new Date(),
+  },
+  returnDate: {
+    type: Date,
+    optional: true,
+  },
+  status: {
     type: String,
-    allowedValues: ['excellent', 'good', 'fair', 'poor'],
-    defaultValue: 'good',
+    allowedValues: ['unassigned', 'cleaning', 'with-vendor', 'in-use'],
+    defaultValue: 'unassigned',
   },
 });
 
 const bridge = new SimpleSchema2Bridge(formSchema);
 
-/* Renders the AddStuff page for adding a document. */
-const AddStuff = () => {
-
-  // On submit, insert the data.
+const RentContainer = () => {
   const submit = (data, formRef) => {
-    const { name, quantity, condition } = data;
-    const owner = Meteor.user().username;
-    Stuffs.collection.insert(
-      { name, quantity, condition, owner },
+    const { containerId, checkoutDate, returnDate, status } = data;
+    Containers.collection.insert(
+      { containerId, checkoutDate, returnDate, status },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -40,19 +42,18 @@ const AddStuff = () => {
     );
   };
 
-  // Render the form. Use Uniforms: https://github.com/vazco/uniforms
   let fRef = null;
   return (
     <Container className="py-3">
       <Row className="justify-content-center">
         <Col xs={5}>
-          <Col className="text-center"><h2>Add Stuff</h2></Col>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
-                <TextField name="name" />
-                <NumField name="quantity" decimal={null} />
-                <SelectField name="condition" />
+                <TextField name="containerId" />
+                <DateField name="checkoutDate" disabled />
+                <DateField name="returnDate" />
+                <SelectField name="status" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>
@@ -64,4 +65,4 @@ const AddStuff = () => {
   );
 };
 
-export default AddStuff;
+export default RentContainer;
