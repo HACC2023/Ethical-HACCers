@@ -2,22 +2,30 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
 /**
- * The ContainersCollection. It encapsulates state and variable values for stuff.
+ * The EventsCollection. It encapsulates state and variable values for stuff.
  */
-class ContainersCollection {
+class EventsCollection {
   constructor() {
     // The name of this collection.
-    this.name = 'ContainersCollection';
+    this.name = 'EventsCollection';
     // Define the Mongo collection.
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      containerId: String,
-      checkoutDate: Date, // Automatically populated
-      returnDate: Date, // Null
-      status: {
+      organization: String,
+      eventLocation: String, // Automatically populated
+      quantity: Number,
+      eventDate: Date,
+      orderDate: Date, // Automatically collected
+      returnDate: Date,
+      types: {
         type: String,
-        allowedValues: ['cleaning', 'with-vendor', 'in-use'],
+        allowedValues: ['small', 'medium', 'large'],
+        defaultValue: 'unassigned',
+      },
+      cleaningLocation: {
+        type: String,
+        allowedValues: ['location-1', 'location-2', 'location-3'],
         defaultValue: 'unassigned',
       },
     });
@@ -30,7 +38,7 @@ class ContainersCollection {
 }
 
 /**
- * The singleton instance of the ContainersCollection.
- * @type {ContainersCollection}
+ * The singleton instance of the EventsCollection.
+ * @type {EventsCollection}
  */
-export const Containers = new ContainersCollection();
+export const Events = new EventsCollection();
