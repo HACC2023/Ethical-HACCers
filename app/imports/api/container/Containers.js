@@ -18,7 +18,7 @@ class ContainersCollection {
       status: {
         type: String,
         allowedValues: ['cleaning', 'with-vendor', 'in-use'],
-        defaultValue: '',
+        defaultValue: 'unassigned',
       },
     });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
