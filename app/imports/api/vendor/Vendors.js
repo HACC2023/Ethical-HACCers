@@ -40,4 +40,4 @@ class VendorsCollection {
  * The singleton instance of the VendorsCollection.
  * @type {VendorsCollection}
  */
-export const Events = new VendorsCollection();
+export const Vendors = new VendorsCollection();
