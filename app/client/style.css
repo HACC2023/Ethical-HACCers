@@ -40,9 +40,40 @@ footer, footer a {
 }
 
 .landing {
-  font-size: 250%;
+  background: url("/images/waffle-setup-cropped.jpg") no-repeat;
+  background-size: cover;
+  height: 60vw;
+  min-height: fit-content;
+  max-width: 200rem;
   font-weight: lighter;
   text-outline: black 2px;
+}
+
+.how-to {
+  background: url("/images/top-clear-box.png") no-repeat;
+  background-size: cover;
+  height: 60vw;
+  min-height: fit-content;
+  max-width: 200rem;
+  font-weight: lighter;
+  text-outline: black 2px;
+}
+
+.large-button-text {
+  font-size: 7vw;
+  font-weight: lighter;
+  max-font-size: 2vh;
+  text-outline: black 3px;
+}
+
+.landing-list {
+  max-font-size: 4vh;
+  font-size: 3.5vw;
+  text-outline: black 2px;
+}
+
+.landing-buttons {
+  background: rgb(0, 0, 0, 0.5) !important;
 }
 
 .admin-landing {
